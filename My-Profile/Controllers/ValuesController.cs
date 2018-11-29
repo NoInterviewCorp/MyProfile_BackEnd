@@ -37,7 +37,7 @@ namespace My_Profile.Controllers
         }
         // GET: api/Game/name
         [HttpGet("{_id}")]
-        public async Task<IActionResult> Get(string _id)
+        public async Task<IActionResult> GetUserById(string _id)
         {
             ObjectId id = new ObjectId(_id);
             var user = await _userRepository.GetUser(id);
@@ -45,7 +45,15 @@ namespace My_Profile.Controllers
                 return NotFound("user with this id not found");
             return Ok(user);
         }
-        // POST: api/Game
+
+        [HttpGet("status/{_id}/resource/{resourceId}")]
+        public async Task<IActionResult> GetStatusById(string _id, string resourceId)
+        {
+            ObjectId id = new ObjectId(_id);
+            var status =await _userRepository.GetStatus(id, resourceId);
+            return Ok(status);
+        }
+        // POST: api/User
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
@@ -65,47 +73,16 @@ namespace My_Profile.Controllers
             return BadRequest("Invalid Format");
 
         }
+        [HttpPost("isCheck")]
+        public async Task<IActionResult> Status([FromBody]Status status)
+        {
 
-        //   public async Task<IActionResult> UploadsProfilePic(IFormFileCollection files)
-        // {
-        //  var server = MongoServer.Create("mongodb://localhost:27020");
-        // var database = server.GetDatabase("UsersDB");
+            // bool result = await _userRepository.PostNote(user);
 
+            await _userRepository.UserResFind(status);
+            return Ok();
+        }
 
-
-
-        // var server = MongoServer.Create("mongodb://localhost:27020");
-        /*   var client = new MongoClient("mongodb://localhost:27017");
-          var server = client.GetServer();
-          var database = server.GetDatabase("UsersDB");
-        //  var database = client.GetDatabase("UsersDB");
-
-         // var collection = database.GetCollection<BsonDocument>("bar");
-         //  var database = server.GetDatabase("tesdb");
-
-           foreach (var formFile in files)
-           {
-           var fileName = formFile.FileName;
-           var newFileName = "./wwwroot/image";
-           using (var fs = new FileStream(fileName, FileMode.Open))
-           {
-               var gridFsInfo = database.GridFS.Upload(fs, fileName);
-               var fileId = gridFsInfo.Id;
-
-                var oid = fileId;
-               var file = database.GridFS.FindOne(Query.EQ("_id", oid));
-
-               using (var stream = file.OpenRead())
-               {
-                   var bytes = new byte[stream.Length];
-                   stream.Read(bytes, 0, (int)stream.Length);
-                   using (var newFs = new FileStream(newFileName, FileMode.Create))
-                   {
-                       newFs.Write(bytes, 0, bytes.Length);
-                   }
-               }
-           }
-           }*/
 
         [HttpPost("UploadsProfilePic")]
         public async Task<IActionResult> UploadsProfilePic(IFormFileCollection files)
@@ -135,13 +112,13 @@ namespace My_Profile.Controllers
         public async Task<IActionResult> Put(string _id, [FromBody]User user)
         {
             ObjectId id = new ObjectId(_id);
-             if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 bool result = await _userRepository.FindNote(id);
                 if (result)
                 {
                     await _userRepository.Update(user);
-                   return Ok(user);
+                    return Ok(user);
                 }
                 else
                 {
@@ -157,18 +134,16 @@ namespace My_Profile.Controllers
             ObjectId id = new ObjectId(_id);
 
             bool result = await _userRepository.FindNote(id);
-            if(result){
+            if (result)
+            {
                 await _userRepository.Delete(id);
                 return Ok($"note with id : {id} deleted succesfully");
             }
-            else{
+            else
+            {
                 return NotFound($"Note with {id} not found.");
             }
-           // var userFromDb = await _userRepository.GetUser(id);
-           // if (userFromDb == null)
-              //  return new NotFoundResult();
-            //await _userRepository.Delete(id);
-            //return Ok();
+
         }
     }
 }

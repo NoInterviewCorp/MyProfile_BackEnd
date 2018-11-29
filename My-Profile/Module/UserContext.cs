@@ -9,7 +9,10 @@ namespace My_Profile
         {
             var client = new MongoClient(options.Value.ConnectionString);
             _db = client.GetDatabase(options.Value.Database);
+            Status.Indexes.CreateOne(new CreateIndexModel<Status>("{ UserId : 1 }"));
         }
         public IMongoCollection<User> Users => _db.GetCollection<User>("Users");
+        public IMongoCollection<Status> Status => _db.GetCollection<Status>("status");
+        
     }
 }

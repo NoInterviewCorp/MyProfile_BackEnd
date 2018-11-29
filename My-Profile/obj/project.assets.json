@@ -12834,11 +12834,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -Mongo\\My-Profile\\my-profile.csproj",
+      "projectUniqueName": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile\\my-profile.csproj",
       "projectName": "my-profile",
-      "projectPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -Mongo\\My-Profile\\my-profile.csproj",
+      "projectPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile\\my-profile.csproj",
       "packagesPath": "C:\\Users\\CGI\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -Mongo\\My-Profile\\obj\\",
+      "outputPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
