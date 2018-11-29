@@ -20,6 +20,7 @@ namespace My_Profile.Controllers
         }
 
         // GET api/values
+        //Get all users
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -35,7 +36,8 @@ namespace My_Profile.Controllers
             }
 
         }
-        // GET: api/Game/name
+        // GET: api/values/id
+        //Get user by id
         [HttpGet("{_id}")]
         public async Task<IActionResult> GetUserById(string _id)
         {
@@ -45,15 +47,17 @@ namespace My_Profile.Controllers
                 return NotFound("user with this id not found");
             return Ok(user);
         }
-
+        
+        //Get Resource Status
         [HttpGet("status/{_id}/resource/{resourceId}")]
         public async Task<IActionResult> GetStatusById(string _id, string resourceId)
         {
             ObjectId id = new ObjectId(_id);
-            var status =await _userRepository.GetStatus(id, resourceId);
+            var status = await _userRepository.GetStatus(id, resourceId);
             return Ok(status);
         }
-        // POST: api/User
+        // POST: api/values
+        //post user
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
@@ -73,6 +77,7 @@ namespace My_Profile.Controllers
             return BadRequest("Invalid Format");
 
         }
+        //post resource status
         [HttpPost("isCheck")]
         public async Task<IActionResult> Status([FromBody]Status status)
         {
@@ -83,7 +88,7 @@ namespace My_Profile.Controllers
             return Ok();
         }
 
-
+        //post user profile
         [HttpPost("UploadsProfilePic")]
         public async Task<IActionResult> UploadsProfilePic(IFormFileCollection files)
         {
@@ -107,7 +112,8 @@ namespace My_Profile.Controllers
             }
 
         }
-        // PUT: api/Game/5
+        // PUT: api/values/5
+        //update user profile
         [HttpPut("{_id}")]
         public async Task<IActionResult> Put(string _id, [FromBody]User user)
         {
@@ -127,7 +133,8 @@ namespace My_Profile.Controllers
             }
             return BadRequest("Invalid Format");
         }
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/values/5
+        //delete user profile
         [HttpDelete("{_id}")]
         public async Task<IActionResult> Delete(string _id)
         {
