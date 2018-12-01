@@ -6,6 +6,7 @@ namespace My_Profile
     public class User
     {
         [BsonId]
+        
         public MongoDB.Bson.ObjectId UserId { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }

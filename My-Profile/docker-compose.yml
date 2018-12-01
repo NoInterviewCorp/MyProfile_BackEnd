@@ -1,0 +1,14 @@
+version: "2"
+services:
+    profile:
+        build: .
+        network_mode: host
+       depends_on:
+            - mongodb
+        environment:
+            - RUNNING_IN_DOCKER=true 
+    ongodb:
+        image: mongo
+        network_mode: host
+        volumes:
+            - ${WEBAPP_STORAGE_HOME}/site:/data/db
