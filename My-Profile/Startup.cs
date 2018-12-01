@@ -55,9 +55,7 @@ namespace My_Profile
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My_Profile");
                 c.RoutePrefix = string.Empty;
             });
-            // app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
-            //app.UseMvc();
             app.UseMvc();
         }
     }
