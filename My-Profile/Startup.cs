@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using My_Profile.Services;
 using Swashbuckle.AspNetCore.Swagger;
 namespace My_Profile
 {
@@ -22,6 +23,7 @@ namespace My_Profile
             services.AddCors();
             services.AddTransient<IUserContext, UserContext>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddSingleton<RabbitMQConnection>();
             services.Configure<Settings>(
             options =>
            {

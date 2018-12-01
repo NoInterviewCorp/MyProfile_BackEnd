@@ -6,6 +6,8 @@ using System;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq;
 using MongoDB.Bson;
+using My_Profile.Services;
+using RabbitMQ.Client;
 
 namespace My_Profile.Controllers
 {
@@ -13,10 +15,12 @@ namespace My_Profile.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+         private RabbitMQConnection rabbit;
         private readonly IUserRepository _userRepository;
-        public ValuesController(IUserRepository userRepository)
+        public ValuesController(IUserRepository userRepository, RabbitMQConnection rabbit)
         {
             _userRepository = userRepository;
+             this.rabbit=rabbit;
         }
 
         // GET api/values
@@ -47,7 +51,7 @@ namespace My_Profile.Controllers
                 return NotFound("user with this id not found");
             return Ok(user);
         }
-        
+
         //Get Resource Status
         [HttpGet("status/{_id}/resource/{resourceId}")]
         public async Task<IActionResult> GetStatusById(string _id, string resourceId)
@@ -58,7 +62,7 @@ namespace My_Profile.Controllers
         }
         // POST: api/values
         //post user
-        [HttpPost]
+        [HttpPost("{UserNode}")]
         public async Task<IActionResult> Post([FromBody]User user)
         {
             if (ModelState.IsValid)
@@ -77,6 +81,131 @@ namespace My_Profile.Controllers
             return BadRequest("Invalid Format");
 
         }
+        [HttpPost("RatingLearningPlan")]
+        public void RatingLearningPlanAsync([FromBody] LearningPlanFeedBack learningPlanFeedback)
+        {
+            var command = new LearningPlanFeedBack
+            {
+                LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+                LearningPlanId = learningPlanFeedback.LearningPlanId,
+                UserId = learningPlanFeedback.UserId,
+                Star = learningPlanFeedback.Star,
+                // Password = "examplePassword"
+            };
+
+            var body = ObjectSerialize.Serialize(command);
+
+            rabbit.Model.BasicPublish(
+                                exchange: rabbit.ExchangeNme,
+                                routingKey: "Send.LearningPlanFeedBack",
+                                basicProperties: null,
+                                body: body
+            );
+            Console.WriteLine(" [x] Sent {0}", command.LearningPlanFeedBackId);
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+
+        }
+        [HttpPost("RatingResource")]
+        public void RatingResourceAsync([FromBody] ResourceFeedBack resourceFeedBack)
+        {
+            var command = new ResourceFeedBack
+            {
+                ResourceFeedBackId = resourceFeedBack.ResourceFeedBackId,
+                ResourceId = resourceFeedBack.ResourceId,
+                UserId = resourceFeedBack.UserId,
+                Star = resourceFeedBack.Star,
+                // Password = "examplePassword"
+            };
+
+            var body = ObjectSerialize.Serialize(command);
+
+            rabbit.Model.BasicPublish(
+                                exchange: rabbit.ExchangeNme,
+                                routingKey: "Send.ResourceFeedBack",
+                                basicProperties: null,
+                                body: body
+            );
+            Console.WriteLine(" [x] Sent {0}", command.ResourceFeedBackId);
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+
+        }
+        [HttpPost("SubscriberLearningPlan")]
+        public void SubscriberLearningPlanAsync([FromBody] LearningPlanFeedBack learningPlanFeedback)
+        {
+            var command = new LearningPlanFeedBack
+            {
+                LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+                LearningPlanId = learningPlanFeedback.LearningPlanId,
+                UserId = learningPlanFeedback.UserId,
+                Subscribe = learningPlanFeedback.Subscribe,
+                // Password = "examplePassword"
+            };
+
+            var body = ObjectSerialize.Serialize(command);
+
+            rabbit.Model.BasicPublish(
+                                exchange: rabbit.ExchangeNme,
+                                routingKey: "Send.LearningPlanFeedBack",
+                                basicProperties: null,
+                                body: body
+            );
+            Console.WriteLine(" [x] Sent {0}", command.LearningPlanFeedBackId);
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+        }
+        [HttpPost("UnSubscriberLearningPlan")]
+        public void UnSubscriberLearningPlanAsync([FromBody] LearningPlanFeedBack learningPlanFeedback)
+        {
+            var command = new LearningPlanFeedBack
+            {
+                LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+                LearningPlanId = learningPlanFeedback.LearningPlanId,
+                UserId = learningPlanFeedback.UserId,
+                //  Subscribe = learningPlanFeedback.Subscribe,
+                // Password = "examplePassword"
+            };
+
+            var body = ObjectSerialize.Serialize(command);
+
+            rabbit.Model.BasicPublish(
+                                exchange: rabbit.ExchangeNme,
+                                routingKey: "Send.LearningPlanFeedBack",
+                                basicProperties: null,
+                                body: body
+            );
+            Console.WriteLine(" [x] Sent {0}", command.LearningPlanFeedBackId);
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+        }
+        [HttpPost("ReportQuestion")]
+        public void ReportQuestionAsync([FromBody] QuestionFeedBack questionFeedBack)
+        {
+            var command = new QuestionFeedBack
+            {
+                QuestionFeedBackId = questionFeedBack.QuestionFeedBackId,
+                QuestionId = questionFeedBack.QuestionId,
+                UserId = questionFeedBack.UserId,
+                Ambiguity = questionFeedBack.Ambiguity
+                //  Subscribe = learningPlanFeedback.Subscribe,
+                // Password = "examplePassword"
+            };
+
+            var body = ObjectSerialize.Serialize(command);
+
+            rabbit.Model.BasicPublish(
+                                exchange: rabbit.ExchangeNme,
+                                routingKey: "Send.QuestionFeedBack",
+                                basicProperties: null,
+                                body: body
+            );
+            Console.WriteLine(" [x] Sent {0}", command.QuestionFeedBackId);
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+        }
+
+
         //post resource status
         [HttpPost("isCheck")]
         public async Task<IActionResult> Status([FromBody]Status status)
