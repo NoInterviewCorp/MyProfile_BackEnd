@@ -7,7 +7,7 @@ services:
             - mongodb
         environment:
             - RUNNING_IN_DOCKER=true 
-    ongodb:
+    mongodb:
         image: mongo
         network_mode: host
         volumes:
