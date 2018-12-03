@@ -4,14 +4,16 @@ services:
         build: .
         network_mode: host
         ports:
-            - 5004:5004
+            -  0.0.0.0:5004:5004
         depends_on:
             - mongodb
         environment:
             - RUNNING_IN_DOCKER=true 
+        labels:
+            - SERVICE_5004_NAME : user_profile
     mongodb:
         image: mongo
         ports:
-            - 27019:27017
+            - 0.0.0.0:27019:27017
         volumes:
             - ${WEBAPP_STORAGE_HOME}/site:/data/db
