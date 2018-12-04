@@ -31,7 +31,7 @@ namespace My_Profile
     {
         [BsonIgnoreIfDefault]
         public ObjectId _id { get; set; }
-        public string id {get ;set;}
+        public string StatusId {get ;set;}
         public List<Resource> Resources { get; set; }
         public string UserId { get; set; }
     }

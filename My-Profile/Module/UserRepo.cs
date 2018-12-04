@@ -34,7 +34,7 @@ namespace My_Profile
         public async Task<bool> GetStatus(string id, string resourceId)
         {
             // string x = "214";
-            FilterDefinition<Status> filter = Builders<Status>.Filter.Eq(m => m.id, id);
+            FilterDefinition<Status> filter = Builders<Status>.Filter.Eq(m => m.StatusId, id);
             var userStutus =await  _context.Status.Find(filter).FirstAsync();
             //   Console.WriteLine("---"+stu.Resources[0].ResourceId);
             for (int i = 0; i < userStutus.Resources.Count; i++)
