@@ -26,10 +26,10 @@ namespace My_Profile.Services
             Factory = new ConnectionFactory
             {
                 // HostName = "172.23.238.173",
-                HostName = "localhost",
+                HostName = "rabbitmq",
                 // Port = 8080,
-                // UserName = "achausername",
-                // Password = "strongpassword",
+                UserName = "achausername",
+                Password = "strongpassword",
                 DispatchConsumersAsync = true
             };
 

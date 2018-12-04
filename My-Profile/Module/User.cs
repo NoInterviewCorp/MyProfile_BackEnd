@@ -7,7 +7,8 @@ namespace My_Profile
     {
         [BsonId]
         
-        public MongoDB.Bson.ObjectId UserId { get; set; }
+        public MongoDB.Bson.ObjectId id { get; set; }
+        public string UserId{get;set;}
         public string UserName { get; set; }
         public string FullName { get; set; }
         public string Description { get; set; }
@@ -30,6 +31,7 @@ namespace My_Profile
     {
         [BsonIgnoreIfDefault]
         public ObjectId _id { get; set; }
+        public string id {get ;set;}
         public List<Resource> Resources { get; set; }
         public string UserId { get; set; }
     }

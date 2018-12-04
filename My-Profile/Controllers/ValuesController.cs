@@ -42,10 +42,10 @@ namespace My_Profile.Controllers
         }
         // GET: api/values/id
         //Get user by id
-        [HttpGet("{_id}")]
-        public async Task<IActionResult> GetUserById(string _id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(string id)
         {
-            ObjectId id = new ObjectId(_id);
+           // ObjectId id = new ObjectId(_id);
             var user = await _userRepository.GetUser(id);
             if (user == null)
                 return NotFound("user with this id not found");
@@ -53,10 +53,10 @@ namespace My_Profile.Controllers
         }
 
         //Get Resource Status
-        [HttpGet("status/{_id}/resource/{resourceId}")]
-        public async Task<IActionResult> GetStatusById(string _id, string resourceId)
+        [HttpGet("status/{id}/resource/{resourceId}")]
+        public async Task<IActionResult> GetStatusById(string id, string resourceId)
         {
-            ObjectId id = new ObjectId(_id);
+          //  ObjectId id = new ObjectId(_id);
             var status = await _userRepository.GetStatus(id, resourceId);
             return Ok(status);
         }
@@ -243,10 +243,10 @@ namespace My_Profile.Controllers
         }
         // PUT: api/values/5
         //update user profile
-        [HttpPut("{_id}")]
-        public async Task<IActionResult> Put(string _id, [FromBody]User user)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody]User user)
         {
-            ObjectId id = new ObjectId(_id);
+           // ObjectId id = new ObjectId(_id);
             if (ModelState.IsValid)
             {
                 bool result = await _userRepository.FindNote(id);
@@ -265,9 +265,9 @@ namespace My_Profile.Controllers
         // DELETE: api/values/5
         //delete user profile
         [HttpDelete("{_id}")]
-        public async Task<IActionResult> Delete(string _id)
+        public async Task<IActionResult> Delete(string id)
         {
-            ObjectId id = new ObjectId(_id);
+           // ObjectId id = new ObjectId(_id);
 
             bool result = await _userRepository.FindNote(id);
             if (result)
