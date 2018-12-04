@@ -6,17 +6,15 @@ services:
         networks:
             - potentiometer-network
         depends_on:
-            - mongodb
+            - mongop
         labels:
             SERVICE_5004_NAME: user_profile
-    mongodb:
+    mongop:
         image: mongo
         networks:
             - potentiometer-network
         ports:
             - 27019:27017
-        volumes:
-            - ${WEBAPP_STORAGE_HOME}/site:/data/db
 networks:
     potentiometer-network:
         name: potentiometer-network
