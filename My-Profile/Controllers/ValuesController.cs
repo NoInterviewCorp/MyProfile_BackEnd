@@ -264,7 +264,7 @@ namespace My_Profile.Controllers
         }
         // DELETE: api/values/5
         //delete user profile
-        [HttpDelete("{_id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
            // ObjectId id = new ObjectId(_id);
