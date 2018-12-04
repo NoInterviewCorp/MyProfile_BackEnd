@@ -22,7 +22,7 @@ namespace My_Profile
                             .Find(_ => true)
                             .ToListAsync();
         }
-        public Task<User> GetUser(ObjectId id)
+        public Task<User> GetUser(string id)
         {
             FilterDefinition<User> filter = Builders<User>.Filter.Eq(m => m.UserId, id);
             return _context
@@ -31,10 +31,10 @@ namespace My_Profile
                     .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> GetStatus(ObjectId id, string resourceId)
+        public async Task<bool> GetStatus(string id, string resourceId)
         {
             // string x = "214";
-            FilterDefinition<Status> filter = Builders<Status>.Filter.Eq(m => m._id, id);
+            FilterDefinition<Status> filter = Builders<Status>.Filter.Eq(m => m.id, id);
             var userStutus =await  _context.Status.Find(filter).FirstAsync();
             //   Console.WriteLine("---"+stu.Resources[0].ResourceId);
             for (int i = 0; i < userStutus.Resources.Count; i++)
@@ -68,7 +68,7 @@ namespace My_Profile
             }
 
         }
-        public async Task<bool> FindNote(MongoDB.Bson.ObjectId id)
+        public async Task<bool> FindNote(string id)
         {
             //  FilterDefinition<User> filter = Builders<User>.Filter.Eq(m => m.Id==user.Id);
             bool exists = await _context.Users.Find((n => n.UserId == id)).AnyAsync();
@@ -93,7 +93,7 @@ namespace My_Profile
             return updateResult.IsAcknowledged
                     && updateResult.ModifiedCount > 0;
         }
-        public async Task<bool> Delete(MongoDB.Bson.ObjectId id)
+        public async Task<bool> Delete(string id)
         {
             FilterDefinition<User> filter = Builders<User>.Filter.Eq(m => m.UserId, id);
             DeleteResult deleteResult = await _context

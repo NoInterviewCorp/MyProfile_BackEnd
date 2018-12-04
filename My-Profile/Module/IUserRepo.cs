@@ -5,13 +5,13 @@ namespace My_Profile
     public interface IUserRepository
     {
         Task<List<User>> GetAllUsers();
-        Task<User> GetUser(MongoDB.Bson.ObjectId id);
-        Task<bool> GetStatus(MongoDB.Bson.ObjectId id, string resourceId);
+        Task<User> GetUser(string id);
+        Task<bool> GetStatus(string id, string resourceId);
         Task<bool> PostNote(User user);
-        Task<bool> FindNote(MongoDB.Bson.ObjectId id);
+        Task<bool> FindNote(string id);
         Task UserResFind(Status status);
         Task Create(User user);
         Task<bool> Update(User user);
-        Task<bool> Delete(MongoDB.Bson.ObjectId id);
+        Task<bool> Delete(string id);
     }
 }
