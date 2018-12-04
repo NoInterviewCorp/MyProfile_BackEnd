@@ -1,12 +1,13 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 namespace My_Profile
 {
     public class User
     {
-        [BsonId]
-        
+        [BsonIgnoreIfDefault]
+        [JsonIgnore]
         public MongoDB.Bson.ObjectId id { get; set; }
         public string UserId{get;set;}
         public string UserName { get; set; }
@@ -30,6 +31,7 @@ namespace My_Profile
     public class Status
     {
         [BsonIgnoreIfDefault]
+        [JsonIgnore]
         public ObjectId _id { get; set; }
         public string StatusId {get ;set;}
         public List<Resource> Resources { get; set; }
