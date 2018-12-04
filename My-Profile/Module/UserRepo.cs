@@ -110,7 +110,9 @@ namespace My_Profile
             {
                 //bool ResourceExists=await _context.Status.Find((n => n.Resources. == status.UserId)).AnyAsync();
                 await _context.Status.InsertOneAsync(status);
+               UserExists.Add(status);
             }
+else{
             bool ResourceExists = (UserExists[0].Resources.Find(r => r.ResourceId == status.Resources[0].ResourceId)) != null;
             // bool exists=
             if (ResourceExists)
@@ -131,5 +133,6 @@ namespace My_Profile
             await _context.Status.ReplaceOneAsync(filter, UserExists[0], options);
             //   return true;
         }
+}
     }
 }
