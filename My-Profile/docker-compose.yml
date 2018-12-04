@@ -11,6 +11,7 @@ services:
             SERVICE_5004_NAME: user_profile
     mongop:
         image: mongo
+        command: mongod --port 27019
         networks:
             - potentiometer-network
         ports:
