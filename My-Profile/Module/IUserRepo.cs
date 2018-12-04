@@ -10,8 +10,8 @@ namespace My_Profile
         Task<bool> PostNote(User user);
         Task<bool> FindNote(string id);
         Task UserResFind(Status status);
-        Task Create(User user);
-        Task<bool> Update(User user);
+        Task Create(string id, User user);
+        Task<bool> Update(string id, User user);
         Task<bool> Delete(string id);
     }
 }

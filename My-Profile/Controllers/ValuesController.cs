@@ -70,7 +70,7 @@ namespace My_Profile.Controllers
                 bool result = await _userRepository.PostNote(user);
                 if (!result)
                 {
-                    await _userRepository.Create(user);
+                   // await _userRepository.Create(user);
                     return Ok(user);
                 }
                 else
@@ -252,13 +252,14 @@ namespace My_Profile.Controllers
                 bool result = await _userRepository.FindNote(id);
                 if (result)
                 {
-                    await _userRepository.Update(user);
-                    return Ok(user);
+                    await _userRepository.Update(id, user);
                 }
                 else
                 {
-                    return BadRequest("Note already exists, please try again.");
+                    await _userRepository.Create(id, user);
+
                 }
+                  return Ok(user);
             }
             return BadRequest("Invalid Format");
         }

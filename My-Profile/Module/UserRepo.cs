@@ -49,9 +49,9 @@ namespace My_Profile
             return false;
         }
 
-        public async Task Create(User user)
+        public async Task Create(string id, User user)
         {
-
+             user.UserId=id;
             await _context.Users.InsertOneAsync(user);
         }
         public async Task<bool> PostNote(User user)
@@ -82,8 +82,9 @@ namespace My_Profile
             }
 
         }
-        public async Task<bool> Update(User user)
+        public async Task<bool> Update(string id, User user)
         {
+            user.UserId=id;
             ReplaceOneResult updateResult =
                 await _context
                         .Users
