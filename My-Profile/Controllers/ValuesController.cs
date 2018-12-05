@@ -86,7 +86,7 @@ namespace My_Profile.Controllers
         {
             var command = new LearningPlanFeedBack
             {
-                LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+               // LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
                 LearningPlanId = learningPlanFeedback.LearningPlanId,
                 UserId = learningPlanFeedback.UserId,
                 Star = learningPlanFeedback.Star,
@@ -97,11 +97,11 @@ namespace My_Profile.Controllers
 
             rabbit.Model.BasicPublish(
                                 exchange: rabbit.ExchangeNme,
-                                routingKey: "Send.LearningPlanFeedBack",
+                                routingKey: "Send.LearningPlanRating",
                                 basicProperties: null,
                                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}", command.LearningPlanFeedBackId);
+            Console.WriteLine(" [x] Sent {0}");
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
 
@@ -111,7 +111,7 @@ namespace My_Profile.Controllers
         {
             var command = new ResourceFeedBack
             {
-                ResourceFeedBackId = resourceFeedBack.ResourceFeedBackId,
+               // ResourceFeedBackId = resourceFeedBack.ResourceFeedBackId,
                 ResourceId = resourceFeedBack.ResourceId,
                 UserId = resourceFeedBack.UserId,
                 Star = resourceFeedBack.Star,
@@ -126,7 +126,7 @@ namespace My_Profile.Controllers
                                 basicProperties: null,
                                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}", command.ResourceFeedBackId);
+            Console.WriteLine(" [x] Sent {0}");
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
 
@@ -136,10 +136,10 @@ namespace My_Profile.Controllers
         {
             var command = new LearningPlanFeedBack
             {
-                LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+               // LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
                 LearningPlanId = learningPlanFeedback.LearningPlanId,
                 UserId = learningPlanFeedback.UserId,
-                Subscribe = learningPlanFeedback.Subscribe,
+               // Subscribe = learningPlanFeedback.Subscribe,
                 // Password = "examplePassword"
             };
 
@@ -147,11 +147,11 @@ namespace My_Profile.Controllers
 
             rabbit.Model.BasicPublish(
                                 exchange: rabbit.ExchangeNme,
-                                routingKey: "Send.LearningPlanFeedBack",
+                                routingKey: "Send.LearningPlanSubscription",
                                 basicProperties: null,
                                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}", command.LearningPlanFeedBackId);
+            Console.WriteLine(" [x] Sent {0}");
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
         }
@@ -160,7 +160,7 @@ namespace My_Profile.Controllers
         {
             var command = new LearningPlanFeedBack
             {
-                LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+               // LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
                 LearningPlanId = learningPlanFeedback.LearningPlanId,
                 UserId = learningPlanFeedback.UserId,
                 //  Subscribe = learningPlanFeedback.Subscribe,
@@ -171,11 +171,11 @@ namespace My_Profile.Controllers
 
             rabbit.Model.BasicPublish(
                                 exchange: rabbit.ExchangeNme,
-                                routingKey: "Send.LearningPlanFeedBack",
+                                routingKey: "Send.LearningPlanSubscription",
                                 basicProperties: null,
                                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}", command.LearningPlanFeedBackId);
+            Console.WriteLine(" [x] Sent {0}");
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
         }
