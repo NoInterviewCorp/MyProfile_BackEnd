@@ -15,7 +15,7 @@ namespace My_Profile.Services
         public IModel Model { get; set; }
         public string ExchangeNme
         {
-            get { return "KnowldegeGraphExchange"; }
+            get { return "KnowledgeGraphExchange"; }
         }
         // private UserContext dbConnection;
 
@@ -35,7 +35,7 @@ namespace My_Profile.Services
 
             Connection = Factory.CreateConnection();
             Model = Connection.CreateModel();
-            Model.ExchangeDeclare("KnowldegeGraphExchange", "topic");
+            Model.ExchangeDeclare("KnowledgeGraphExchange", "topic");
             Model.QueueDeclare("Profile_KnowledgeGraph_User", false, false, false, null);
             Model.QueueDeclare("Profile_KnowledgeGraph_LearningPlanRatingWrapper", false, false, false, null);
             Model.QueueDeclare ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", false, false, false, null);
@@ -45,8 +45,8 @@ namespace My_Profile.Services
 
             Model.QueueBind("Profile_KnowledgeGraph_User", "KnowldegeGraphExchange", "Users");
             
-Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanRatingWrapper", ExchangeName, "Send.LearningPlanRating");
-Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", ExchangeName, "Send.LearningPlanSubscription");
+Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanRatingWrapper", ExchangeNme, "Send.LearningPlanRating");
+Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", ExchangeNme, "Send.LearningPlanSubscription");
            // Model.QueueBind("Profile_KnowledgeGraph_LearningPlanFeedBack", ExchangeNme, "Send.LearningPlanFeedBack");
            // Model.QueueBind("Profile_KnowledgeGraph_ResourceFeedBack", ExchangeNme, "Send.ResourceFeedBack");
            // Model.QueueBind("Profile_KnowledgeGraph_QuestionFeedBack", ExchangeNme, "Send.QuestionFeedBack");
