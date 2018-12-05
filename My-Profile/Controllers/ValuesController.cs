@@ -63,22 +63,29 @@ namespace My_Profile.Controllers
         // POST: api/values
         //post user
         [HttpPost("{UserNode}")]
-        public async Task<IActionResult> Post([FromBody]User user)
+        public void PostUserAsync([FromBody] UserWrapper userWrapper)
         {
-            if (ModelState.IsValid)
+            var command = new UserWrapper
             {
-                bool result = await _userRepository.PostNote(user);
-                if (!result)
-                {
-                   // await _userRepository.Create(user);
-                    return Ok(user);
-                }
-                else
-                {
-                    return BadRequest("Note already exists, please try again.");
-                }
-            }
-            return BadRequest("Invalid Format");
+               // ResourceFeedBackId = resourceFeedBack.ResourceFeedBackId,
+               // ResourceId = resourceFeedBack.ResourceId,
+                UserId = userWrapper.UserId,
+              //  Star = resourceFeedBack.Star,
+                // Password = "examplePassword"
+            };
+
+            var body = ObjectSerialize.Serialize(command);
+
+            rabbit.Model.BasicPublish(
+                                exchange: rabbit.ExchangeNme,
+                                routingKey: "Users",
+                                basicProperties: null,
+                                body: body
+            );
+            Console.WriteLine(" [x] Sent {0}");
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+
 
         }
         [HttpPost("RatingLearningPlan")]

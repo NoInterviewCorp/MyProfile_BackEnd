@@ -43,10 +43,9 @@ namespace My_Profile.Services
            // Model.QueueDeclare("Profile_KnowledgeGraph_ResourceFeedBack", false, false, false, null);
            // Model.QueueDeclare("Profile_KnowledgeGraph_QuestionFeedBack", false, false, false, null);
 
-            Model.QueueBind("Profile_KnowledgeGraph_User", "KnowldegeGraphExchange", "Users");
-            
-Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanRatingWrapper", ExchangeNme, "Send.LearningPlanRating");
-Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", ExchangeNme, "Send.LearningPlanSubscription");
+            Model.QueueBind("Profile_KnowledgeGraph_User", "KnowldegeGraphExchange", "Users"); 
+            Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanRatingWrapper", ExchangeNme, "Send.LearningPlanRating");
+            Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", ExchangeNme, "Send.LearningPlanSubscription");
            // Model.QueueBind("Profile_KnowledgeGraph_LearningPlanFeedBack", ExchangeNme, "Send.LearningPlanFeedBack");
            // Model.QueueBind("Profile_KnowledgeGraph_ResourceFeedBack", ExchangeNme, "Send.ResourceFeedBack");
            // Model.QueueBind("Profile_KnowledgeGraph_QuestionFeedBack", ExchangeNme, "Send.QuestionFeedBack");
