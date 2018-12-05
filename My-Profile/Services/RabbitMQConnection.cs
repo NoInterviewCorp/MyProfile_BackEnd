@@ -37,14 +37,19 @@ namespace My_Profile.Services
             Model = Connection.CreateModel();
             Model.ExchangeDeclare("KnowldegeGraphExchange", "topic");
             Model.QueueDeclare("Profile_KnowledgeGraph_User", false, false, false, null);
-            Model.QueueDeclare("Profile_KnowledgeGraph_LearningPlanFeedBack", false, false, false, null);
-            Model.QueueDeclare("Profile_KnowledgeGraph_ResourceFeedBack", false, false, false, null);
-            Model.QueueDeclare("Profile_KnowledgeGraph_QuestionFeedBack", false, false, false, null);
+            Model.QueueDeclare("Profile_KnowledgeGraph_LearningPlanRatingWrapper", false, false, false, null);
+            Model.QueueDeclare ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", false, false, false, null);
+
+           // Model.QueueDeclare("Profile_KnowledgeGraph_ResourceFeedBack", false, false, false, null);
+           // Model.QueueDeclare("Profile_KnowledgeGraph_QuestionFeedBack", false, false, false, null);
 
             Model.QueueBind("Profile_KnowledgeGraph_User", "KnowldegeGraphExchange", "Users");
-            Model.QueueBind("Profile_KnowledgeGraph_LearningPlanFeedBack", ExchangeNme, "Send.LearningPlanFeedBack");
-            Model.QueueBind("Profile_KnowledgeGraph_ResourceFeedBack", ExchangeNme, "Send.ResourceFeedBack");
-            Model.QueueBind("Profile_KnowledgeGraph_QuestionFeedBack", ExchangeNme, "Send.QuestionFeedBack");
+            
+Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanRatingWrapper", ExchangeName, "Send.LearningPlanRating");
+Model.QueueBind ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", ExchangeName, "Send.LearningPlanSubscription");
+           // Model.QueueBind("Profile_KnowledgeGraph_LearningPlanFeedBack", ExchangeNme, "Send.LearningPlanFeedBack");
+           // Model.QueueBind("Profile_KnowledgeGraph_ResourceFeedBack", ExchangeNme, "Send.ResourceFeedBack");
+           // Model.QueueBind("Profile_KnowledgeGraph_QuestionFeedBack", ExchangeNme, "Send.QuestionFeedBack");
             // ListenForUser();
         }
 
