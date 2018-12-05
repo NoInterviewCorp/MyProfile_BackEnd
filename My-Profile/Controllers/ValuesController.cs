@@ -82,14 +82,14 @@ namespace My_Profile.Controllers
 
         }
         [HttpPost("RatingLearningPlan")]
-        public void RatingLearningPlanAsync([FromBody] LearningPlanFeedBack learningPlanFeedback)
+        public void RatingLearningPlanAsync([FromBody] LearningPlanRatingWrapper learningPlanRatingWrapper)
         {
-            var command = new LearningPlanFeedBack
+            var command = new LearningPlanRatingWrapper
             {
                // LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
-                LearningPlanId = learningPlanFeedback.LearningPlanId,
-                UserId = learningPlanFeedback.UserId,
-                Star = learningPlanFeedback.Star,
+                LearningPlanId = learningPlanRatingWrapper.LearningPlanId,
+                UserId = learningPlanRatingWrapper.UserId,
+                Star = learningPlanRatingWrapper.Star,
                 // Password = "examplePassword"
             };
 
@@ -132,13 +132,13 @@ namespace My_Profile.Controllers
 
         }
         [HttpPost("SubscriberLearningPlan")]
-        public void SubscriberLearningPlanAsync([FromBody] LearningPlanFeedBack learningPlanFeedback)
+        public void SubscriberLearningPlanAsync([FromBody] LearningPlanSubscriptionWrapper learningPlanSubscriptionWrapper)
         {
-            var command = new LearningPlanFeedBack
+            var command = new LearningPlanSubscriptionWrapper
             {
-               // LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
-                LearningPlanId = learningPlanFeedback.LearningPlanId,
-                UserId = learningPlanFeedback.UserId,
+                //LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+                LearningPlanId = learningPlanSubscriptionWrapper.LearningPlanId,
+                UserId = learningPlanSubscriptionWrapper.UserId,
                // Subscribe = learningPlanFeedback.Subscribe,
                 // Password = "examplePassword"
             };
@@ -156,16 +156,17 @@ namespace My_Profile.Controllers
             Console.ReadLine();
         }
         [HttpPost("UnSubscriberLearningPlan")]
-        public void UnSubscriberLearningPlanAsync([FromBody] LearningPlanFeedBack learningPlanFeedback)
+        public void UnSubscriberLearningPlanAsync([FromBody] LearningPlanSubscriptionWrapper learningPlanSubscriptionWrapper)
         {
-            var command = new LearningPlanFeedBack
+            var command = new LearningPlanSubscriptionWrapper
             {
-               // LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
-                LearningPlanId = learningPlanFeedback.LearningPlanId,
-                UserId = learningPlanFeedback.UserId,
+              //  LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
+                LearningPlanId = learningPlanSubscriptionWrapper.LearningPlanId,
+                UserId = learningPlanSubscriptionWrapper.UserId,
                 //  Subscribe = learningPlanFeedback.Subscribe,
                 // Password = "examplePassword"
             };
+
 
             var body = ObjectSerialize.Serialize(command);
 
