@@ -227,9 +227,9 @@ namespace My_Profile.Controllers
 
         //post user profile
         [HttpPost("UploadsProfilePic")]
-        public async Task<IActionResult> UploadsProfilePic(IFormFileCollection files)
+        public async Task<IActionResult> UploadsProfilePic()
         {
-
+            var files=Request.Form.Files;
             long size = files.Sum(f => f.Length);
             try
             {
@@ -238,10 +238,13 @@ namespace My_Profile.Controllers
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "./wwwroot/image", formFile.FileName);
                     var stream = new FileStream(filePath, FileMode.Create);
                     await formFile.CopyToAsync(stream);
+                    Console.WriteLine("file uploaded"+ formFile.FileName);
 
 
                 }
+                Console.WriteLine("file uploaded"+ files.Count);
                 return Ok(new { count = files.Count });
+
             }
             catch (Exception e)
             {
