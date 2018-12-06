@@ -10986,11 +10986,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile.Tests\\My-Profile.Tests.csproj",
+      "projectUniqueName": "c:\\Users\\CGI\\Stackroute\\NoInterview\\UserProfile_BackEnd\\My-Profile.Tests\\My-Profile.Tests.csproj",
       "projectName": "My-Profile.Tests",
-      "projectPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile.Tests\\My-Profile.Tests.csproj",
+      "projectPath": "c:\\Users\\CGI\\Stackroute\\NoInterview\\UserProfile_BackEnd\\My-Profile.Tests\\My-Profile.Tests.csproj",
       "packagesPath": "C:\\Users\\CGI\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile.Tests\\obj\\",
+      "outputPath": "c:\\Users\\CGI\\Stackroute\\NoInterview\\UserProfile_BackEnd\\My-Profile.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11009,8 +11009,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile\\my-profile.csproj": {
-              "projectPath": "c:\\Users\\CGI\\Stackroute\\MyProfile_BackEnd -with Status\\My-Profile\\my-profile.csproj"
+            "c:\\Users\\CGI\\Stackroute\\NoInterview\\UserProfile_BackEnd\\My-Profile\\my-profile.csproj": {
+              "projectPath": "c:\\Users\\CGI\\Stackroute\\NoInterview\\UserProfile_BackEnd\\My-Profile\\my-profile.csproj"
             }
           }
         }

@@ -15,12 +15,12 @@ namespace My_Profile.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-         private RabbitMQConnection rabbit;
+         private QueueBuilder queue;
         private readonly IUserRepository _userRepository;
-        public ValuesController(IUserRepository userRepository, RabbitMQConnection rabbit)
+        public ValuesController(IUserRepository userRepository, QueueBuilder queue)
         {
             _userRepository = userRepository;
-             this.rabbit=rabbit;
+             this.queue=queue;
         }
 
         // GET api/values
@@ -76,8 +76,8 @@ namespace My_Profile.Controllers
 
             var body = ObjectSerialize.Serialize(command);
 
-            rabbit.Model.BasicPublish(
-                                exchange: rabbit.ExchangeNme,
+            queue.Model.BasicPublish(
+                                exchange: queue.ExchangeNme,
                                 routingKey: "Users",
                                 basicProperties: null,
                                 body: body
@@ -102,8 +102,8 @@ namespace My_Profile.Controllers
 
             var body = ObjectSerialize.Serialize(command);
 
-            rabbit.Model.BasicPublish(
-                                exchange: rabbit.ExchangeNme,
+            queue.Model.BasicPublish(
+                                exchange: queue.ExchangeNme,
                                 routingKey: "Send.LearningPlanRating",
                                 basicProperties: null,
                                 body: body
@@ -127,8 +127,8 @@ namespace My_Profile.Controllers
 
             var body = ObjectSerialize.Serialize(command);
 
-            rabbit.Model.BasicPublish(
-                                exchange: rabbit.ExchangeNme,
+            queue.Model.BasicPublish(
+                                exchange: queue.ExchangeNme,
                                 routingKey: "Send.ResourceFeedBack",
                                 basicProperties: null,
                                 body: body
@@ -152,8 +152,8 @@ namespace My_Profile.Controllers
 
             var body = ObjectSerialize.Serialize(command);
 
-            rabbit.Model.BasicPublish(
-                                exchange: rabbit.ExchangeNme,
+            queue.Model.BasicPublish(
+                                exchange: queue.ExchangeNme,
                                 routingKey: "Send.LearningPlanSubscription",
                                 basicProperties: null,
                                 body: body
@@ -177,8 +177,8 @@ namespace My_Profile.Controllers
 
             var body = ObjectSerialize.Serialize(command);
 
-            rabbit.Model.BasicPublish(
-                                exchange: rabbit.ExchangeNme,
+            queue.Model.BasicPublish(
+                                exchange: queue.ExchangeNme,
                                 routingKey: "Send.LearningPlanSubscription",
                                 basicProperties: null,
                                 body: body
@@ -202,8 +202,8 @@ namespace My_Profile.Controllers
 
             var body = ObjectSerialize.Serialize(command);
 
-            rabbit.Model.BasicPublish(
-                                exchange: rabbit.ExchangeNme,
+            queue.Model.BasicPublish(
+                                exchange: queue.ExchangeNme,
                                 routingKey: "Send.QuestionFeedBack",
                                 basicProperties: null,
                                 body: body

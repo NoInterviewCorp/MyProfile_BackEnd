@@ -8,7 +8,7 @@ using System;
 
 namespace My_Profile.Services
 {
-    public class RabbitMQConnection
+    public class QueueBuilder
     {
         private ConnectionFactory Factory;
         public IConnection Connection { get; set; }
@@ -19,7 +19,7 @@ namespace My_Profile.Services
         }
         // private UserContext dbConnection;
 
-        public RabbitMQConnection()
+        public QueueBuilder()
         {
             // this.dbConnection = dbConnection;
 
@@ -36,6 +36,7 @@ namespace My_Profile.Services
             Connection = Factory.CreateConnection();
             Model = Connection.CreateModel();
             Model.ExchangeDeclare("KnowledgeGraphExchange", "topic");
+            
             Model.QueueDeclare("Profile_KnowledgeGraph_User", false, false, false, null);
             Model.QueueDeclare("Profile_KnowledgeGraph_LearningPlanRatingWrapper", false, false, false, null);
             Model.QueueDeclare ("Profile_KnowledgeGraph_LearningPlanSubscriptionWrapper", false, false, false, null);

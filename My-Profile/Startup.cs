@@ -23,7 +23,8 @@ namespace My_Profile
             services.AddCors();
             services.AddTransient<IUserContext, UserContext>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddSingleton<RabbitMQConnection>();
+            services.AddSingleton<QueueBuilder>();
+            services.AddSingleton<QueueHandler>();
             services.Configure<Settings>(
             options =>
            {
