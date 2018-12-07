@@ -13,17 +13,8 @@ namespace My_Profile.Services {
         public QueueHandler (QueueBuilder _queues, IUserRepository userRepository) {
             queues = _queues;
             _userRepository = userRepository;
-            // this.HandleLearningPlanFromQueue();
-            // this.HandleResourceFromQueue();
             this.ListenForQuizResult ();
-            // this.ListenForLeaningPlanRating();
-            // this.ListenForResourceFeedBack();
-            // this.ListenForLeaningPlanSubscriber();
-            // this.ListenForLeaningPlanUnSubscriber();
-            // this.ListenForQuestionFeedBack();
-            // this.QuestionBatchRequestHandler();
             Console.WriteLine ("------");
-            //  this.QuizEngineQueueHandler();
         }
         public void ListenForQuizResult () {
             var channel = queues.connection.CreateModel ();
@@ -43,6 +34,8 @@ namespace My_Profile.Services {
             Console.WriteLine ("Consuming from QuizEngine Knowledge Graph");
             channel.BasicConsume ("QuizEngine_Profile_QuizData", false, consumer);
         }
+
+        
 
     }
 }
