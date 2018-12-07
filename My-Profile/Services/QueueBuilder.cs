@@ -23,7 +23,7 @@ namespace My_Profile.Services
         private AsyncEventingBasicConsumer consumer;
         private IBasicProperties properties;
         private BlockingCollection<UserReport> responseQueue = new BlockingCollection<UserReport>();
-        private string replyQueueName = "Report.Response";
+        private string replyQueueName = "UserReport.Response";
 
         public QueueBuilder()
         {
