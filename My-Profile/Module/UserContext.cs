@@ -13,6 +13,8 @@ namespace My_Profile
         }
         public IMongoCollection<User> Users => _db.GetCollection<User>("Users");
         public IMongoCollection<Status> Status => _db.GetCollection<Status>("status");
+         public IMongoCollection<UserData> QuizResult => _db.GetCollection<UserData>("QuizResult");
+
         
     }
 }
