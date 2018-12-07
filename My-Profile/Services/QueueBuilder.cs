@@ -7,7 +7,6 @@ using MongoDB.Driver;
 using My_Profile.Models;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-// using KnowledgeGraph.Services;
 
 namespace My_Profile.Services
 {
