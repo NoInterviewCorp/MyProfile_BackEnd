@@ -119,6 +119,7 @@ namespace My_Profile.Controllers
                 body: body
             );
             Console.WriteLine($" [x] Sent Rating Request for {learningPlanRatingWrapper.LearningPlanId}");
+        }
         
 
         [HttpPost("RatingResource")]
