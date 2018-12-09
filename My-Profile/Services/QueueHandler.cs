@@ -19,6 +19,7 @@ namespace My_Profile.Services {
         public void ListenForQuizResult () {
             var channel = queues.connection.CreateModel ();
             var consumer = new AsyncEventingBasicConsumer (channel);
+            
             consumer.Received += async (model, ea) => {
                 Console.WriteLine ("Consuming from the queue");
                 Console.WriteLine ("-----------------------------------------------------------------------");

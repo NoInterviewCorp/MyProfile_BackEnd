@@ -84,11 +84,7 @@ namespace My_Profile.Controllers
         {
             var command = new UserWrapper
             {
-                // ResourceFeedBackId = resourceFeedBack.ResourceFeedBackId,
-                // ResourceId = resourceFeedBack.ResourceId,
                 UserId = userWrapper.UserId,
-                //  Star = resourceFeedBack.Star,
-                // Password = "examplePassword"
             };
 
             var body = ObjectSerialize.Serialize(command);
@@ -99,10 +95,7 @@ namespace My_Profile.Controllers
                 basicProperties: null,
                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}");
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
-
+            Console.WriteLine($" [x] Sent Post Request for {userWrapper.UserId}");
         }
 
         [HttpPost("RatingLearningPlan")]
@@ -125,22 +118,17 @@ namespace My_Profile.Controllers
                 basicProperties: null,
                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}");
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
-
-        }
+            Console.WriteLine($" [x] Sent Rating Request for {learningPlanRatingWrapper.LearningPlanId}");
+        
 
         [HttpPost("RatingResource")]
         public void RatingResourceAsync([FromBody] ResourceFeedBack resourceFeedBack)
         {
             var command = new ResourceFeedBack
             {
-                // ResourceFeedBackId = resourceFeedBack.ResourceFeedBackId,
                 ResourceId = resourceFeedBack.ResourceId,
                 UserId = resourceFeedBack.UserId,
                 Star = resourceFeedBack.Star,
-                // Password = "examplePassword"
             };
 
             var body = ObjectSerialize.Serialize(command);
@@ -151,9 +139,7 @@ namespace My_Profile.Controllers
                 basicProperties: null,
                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}");
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
+            Console.WriteLine($" [x] Sent Rating Request for Resource with id {resourceFeedBack.ResourceId}");
 
         }
 
@@ -162,11 +148,8 @@ namespace My_Profile.Controllers
         {
             var command = new LearningPlanSubscriptionWrapper
             {
-                //LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
                 LearningPlanId = learningPlanSubscriptionWrapper.LearningPlanId,
                 UserId = learningPlanSubscriptionWrapper.UserId,
-                // Subscribe = learningPlanFeedback.Subscribe,
-                // Password = "examplePassword"
             };
 
             var body = ObjectSerialize.Serialize(command);
@@ -177,9 +160,7 @@ namespace My_Profile.Controllers
                 basicProperties: null,
                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}");
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
+            Console.WriteLine($" [x] {learningPlanSubscriptionWrapper.UserId} Request to Subscribe Learning Plan with Id {learningPlanSubscriptionWrapper.LearningPlanId}");
         }
 
         [HttpPost("UnSubscriberLearningPlan")]
@@ -187,11 +168,8 @@ namespace My_Profile.Controllers
         {
             var command = new LearningPlanSubscriptionWrapper
             {
-                //  LearningPlanFeedBackId = learningPlanFeedback.LearningPlanFeedBackId,
                 LearningPlanId = learningPlanSubscriptionWrapper.LearningPlanId,
                 UserId = learningPlanSubscriptionWrapper.UserId,
-                //  Subscribe = learningPlanFeedback.Subscribe,
-                // Password = "examplePassword"
             };
 
             var body = ObjectSerialize.Serialize(command);
@@ -202,9 +180,7 @@ namespace My_Profile.Controllers
                 basicProperties: null,
                 body: body
             );
-            Console.WriteLine(" [x] Sent {0}");
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
+            Console.WriteLine($" [x] {learningPlanSubscriptionWrapper.UserId} Request to Unsubscribe Learning Plan with Id {learningPlanSubscriptionWrapper.LearningPlanId}");
         }
 
         [HttpPost("ReportQuestion")]
@@ -216,8 +192,6 @@ namespace My_Profile.Controllers
                 QuestionId = questionFeedBack.QuestionId,
                 UserId = questionFeedBack.UserId,
                 Ambiguity = questionFeedBack.Ambiguity
-                //  Subscribe = learningPlanFeedback.Subscribe,
-                // Password = "examplePassword"
             };
 
             var body = ObjectSerialize.Serialize(command);
@@ -229,8 +203,6 @@ namespace My_Profile.Controllers
                 body: body
             );
             Console.WriteLine(" [x] Sent {0}", command.QuestionFeedBackId);
-            Console.WriteLine(" Press [enter] to exit.");
-            Console.ReadLine();
         }
 
         //post resource status
