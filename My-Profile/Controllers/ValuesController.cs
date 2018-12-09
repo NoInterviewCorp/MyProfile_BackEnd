@@ -58,7 +58,7 @@ namespace My_Profile.Controllers
             // ObjectId id = new ObjectId(_id);
             var user = await _userRepository.GetQuizResult(id);
             if (user == null)
-                return NotFound("user with this id not found");
+                return NotFound("User has not given any tests in this technology");
             return Ok(user);
         }
 

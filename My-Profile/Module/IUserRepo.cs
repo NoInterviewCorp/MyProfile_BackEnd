@@ -12,6 +12,6 @@ namespace My_Profile {
         Task<bool> Update (string id, User user);
         Task<bool> Delete (string id);
         Task CreateQuizResultAndRelationships (UserData userData);
-        Task<UserData> GetQuizResult (string id);
+        Task<List<UserData>> GetQuizResult(string id);
     }
 }
