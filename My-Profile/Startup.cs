@@ -28,8 +28,8 @@ namespace My_Profile
             services.Configure<Settings>(
             options =>
            {
-            options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-            options.Database = Configuration.GetSection("MongoDb:Database").Value;
+               options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
+               options.Database = Configuration.GetSection("MongoDb:Database").Value;
            });
             services.AddSwaggerGen(c =>
             {
@@ -39,7 +39,7 @@ namespace My_Profile
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, QueueHandler queueHandler)
         {
             if (env.IsDevelopment())
             {
